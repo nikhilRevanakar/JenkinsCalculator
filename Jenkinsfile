@@ -23,6 +23,14 @@ pipeline {
             archive 'target/*.jar'
         }
     }
+
+    stage("Consolidated Results") {
+        steps{
+            mail body: "${env.JOB_NAME} -Build #${env.BUILD_NUMBER} -${currentBuild.currentResult} \n\n Checkoutput at ${env.BUILD_URL}", subject: 'Simple Subject', to: 'nikhil.revanakar@gmail.com'
+        }
+    }
+
+    
     }
 
 }
